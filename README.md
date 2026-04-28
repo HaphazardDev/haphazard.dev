@@ -1,46 +1,78 @@
-# Astro Starter Kit: Basics
+# Haphazard.dev
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Developer-first homepage for Haphazard.dev: a static Astro site that showcases Corwin's projects, tools, extensions, and workflow experiments.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Projects
 
-## 🚀 Project Structure
+Project content lives in [`src/data/projects.ts`](src/data/projects.ts). Update that file to add, remove, or edit project sections on the homepage.
 
-Inside of your Astro project, you'll see the following folders and files:
+Each project supports:
+
+- `title`
+- `category`
+- `description`
+- `highlights`
+- `technologies`
+- `links`
+
+## Structure
 
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── public/              # favicons and static assets
+├── src/
+│   ├── data/
+│   │   └── projects.ts  # project metadata rendered on the homepage
+│   ├── layouts/
+│   │   └── Layout.astro # document shell, metadata, global styles
+│   └── pages/
+│       └── index.astro  # homepage content and page-level styles
+├── astro.config.mjs
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Development
 
-## 🧞 Commands
+Install dependencies:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+pnpm install
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Start the local dev server:
 
-## 👀 Want to learn more?
+```sh
+pnpm dev
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Build the production site:
+
+```sh
+pnpm build
+```
+
+Preview the production build locally:
+
+```sh
+pnpm preview
+```
+
+## Design notes
+
+The site is intentionally minimal and dev-oriented:
+
+- static Astro output
+- no client-side JavaScript required for the core page
+- terminal/editor-inspired visual language
+- semantic, anchorable project sections
+- visible focus states and skip navigation
+
+## Updating project content
+
+Edit `src/data/projects.ts`, then run:
+
+```sh
+pnpm build
+```
+
+to verify the site still builds before committing.
