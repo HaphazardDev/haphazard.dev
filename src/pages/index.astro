@@ -20,7 +20,6 @@ const primaryLinks = [
 		</a>
 		<nav class="top-nav" aria-label="Primary navigation">
 			<a href="#projects">projects</a>
-			<a href="#stack">stack</a>
 			{primaryLinks.map((link) => <a href={link.href}>{link.label}</a>)}
 		</nav>
 	</header>
@@ -66,7 +65,6 @@ const primaryLinks = [
 			<div class="section-heading">
 				<p class="eyebrow mono">cat ./projects.json</p>
 				<h2 id="projects-title">Projects</h2>
-				<p>Each section is structured like a useful README: what it is, why it exists, the stack, and where to go next.</p>
 			</div>
 
 			<div class="project-list">
@@ -107,17 +105,6 @@ const primaryLinks = [
 			</div>
 		</section>
 
-		<section id="stack" class="stack" aria-labelledby="stack-title">
-			<div>
-				<p class="eyebrow mono">dev-first by default</p>
-				<h2 id="stack-title">Built for scanning, linking, and shipping.</h2>
-			</div>
-			<ul>
-				<li><strong>Fast static Astro</strong><span>No client JavaScript required for the core experience.</span></li>
-				<li><strong>Readable project data</strong><span>Projects live in <code>src/data/projects.ts</code> for easy updates.</span></li>
-				<li><strong>Keyboard friendly</strong><span>Visible focus states, skip link, semantic headings, and anchorable sections.</span></li>
-			</ul>
-		</section>
 	</main>
 
 	<footer class="site-footer">
@@ -220,7 +207,6 @@ const primaryLinks = [
 
 	.terminal,
 	.project,
-	.stack,
 	.index-card {
 		border: 1px solid var(--line);
 		background: var(--panel);
@@ -376,18 +362,13 @@ const primaryLinks = [
 		margin-bottom: 1.5rem;
 	}
 
-	.section-heading h2,
-	.stack h2 {
+	.section-heading h2 {
 		margin-bottom: 0;
 		font-size: clamp(2.2rem, 5vw, 4rem);
 		line-height: 0.95;
 		letter-spacing: -0.06em;
 	}
 
-	.section-heading p:last-child {
-		color: var(--muted);
-		line-height: 1.7;
-	}
 
 	.project-list {
 		display: grid;
@@ -482,39 +463,6 @@ const primaryLinks = [
 		border-color: var(--accent);
 	}
 
-	.stack {
-		display: grid;
-		grid-template-columns: 0.9fr 1.1fr;
-		gap: 2rem;
-		margin-bottom: 5rem;
-		border-radius: 26px;
-		padding: 1.5rem;
-	}
-
-	.stack ul {
-		display: grid;
-		gap: 1rem;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.stack li {
-		display: grid;
-		gap: 0.3rem;
-		border-bottom: 1px solid var(--line);
-		padding-bottom: 1rem;
-	}
-
-	.stack li:last-child {
-		border-bottom: 0;
-		padding-bottom: 0;
-	}
-
-	.stack span {
-		color: var(--muted);
-		line-height: 1.6;
-	}
 
 	code {
 		padding: 0.1rem 0.35rem;
@@ -543,8 +491,7 @@ const primaryLinks = [
 		.site-header,
 		.hero,
 		.section-heading,
-		.project,
-		.stack {
+		.project {
 			grid-template-columns: 1fr;
 		}
 
@@ -598,8 +545,7 @@ const primaryLinks = [
 			grid-template-columns: 1fr;
 		}
 
-		.project,
-		.stack {
+		.project {
 			border-radius: 20px;
 			padding: 1rem;
 		}
