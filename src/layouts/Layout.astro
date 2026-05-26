@@ -2,12 +2,18 @@
 interface Props {
 	title?: string;
 	description?: string;
+	imagePath?: string;
 }
 
 const {
 	title = "Haphazard.dev — developer tools by Corwin",
 	description = "A home base for Corwin's developer tools, extensions, CLIs, and workflow experiments.",
+	imagePath = "/og-image.png",
 } = Astro.props;
+
+const site = Astro.site ?? new URL("https://haphazard.dev");
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+const imageUrl = new URL(imagePath, site).toString();
 ---
 
 <!doctype html>
@@ -17,12 +23,24 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<link rel="canonical" href={canonicalUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<meta name="theme-color" content="#07100c" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Haphazard.dev" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={imageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Haphazard.dev developer tools by Corwin" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={imageUrl} />
+		<meta name="twitter:image:alt" content="Haphazard.dev developer tools by Corwin" />
 		<title>{title}</title>
 	</head>
 	<body>
