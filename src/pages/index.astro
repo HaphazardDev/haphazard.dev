@@ -14,7 +14,9 @@ const primaryLinks = [
 >
 	<a class="skip-link" href="#projects">Skip to projects</a>
 
-	<header id="top" class="site-header" aria-label="Site header">
+	<span id="top" class="top-anchor" aria-hidden="true"></span>
+
+	<header class="site-header" aria-label="Site header">
 		<a class="brand" href="/" aria-label="Haphazard.dev home">
 			<span class="prompt" aria-hidden="true">~/</span>haphazard.dev
 		</a>
@@ -114,6 +116,12 @@ const primaryLinks = [
 </Layout>
 
 <style>
+	.top-anchor {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
 	.skip-link {
 		position: fixed;
 		top: 1rem;
