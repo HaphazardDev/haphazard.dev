@@ -1,565 +1,707 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { projects } from "../data/projects";
 
-const primaryLinks = [
-	{ label: "GitHub", href: "https://github.com/corwinm" },
-	{ label: "HaphazardDev", href: "https://github.com/HaphazardDev" },
-];
+const site = Astro.site ?? new URL("https://haphazard.dev");
+const canonicalUrl = new URL(Astro.url.pathname, site).toString();
+const title = "Haphazard.dev — tools in forward motion";
+const description =
+	"Independent developer tools, extensions, and workflow experiments by Corwin.";
 ---
 
-<Layout
-	title="Haphazard.dev — developer tools by Corwin"
-	description="A dev-first home page for Corwin's projects: VS Code extensions, CLIs, tmux integrations, and pi ecosystem experiments."
->
-	<a class="skip-link" href="#projects">Skip to projects</a>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="noindex,nofollow" />
+		<meta name="description" content={description} />
+		<meta name="theme-color" content="#f2ff3d" />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:site_name" content="Haphazard.dev" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<a class="skip-link" href="#projects">Skip to projects</a>
 
-	<span id="top" class="top-anchor" aria-hidden="true"></span>
+		<header class="masthead" id="top">
+			<a class="wordmark" href="/" aria-label="Haphazard.dev home">
+				<span>Haphazard</span><span>.dev</span>
+			</a>
+			<nav aria-label="Primary navigation">
+				<a href="#projects">Work</a>
+				<a href="https://github.com/corwinm">Corwin / GitHub</a>
+				<a href="https://github.com/HaphazardDev">HaphazardDev</a>
+			</nav>
+			<button class="flip" type="button" aria-pressed="false">
+				<span class="flip-label">Flip colors</span><span aria-hidden="true">↻</span>
+			</button>
+		</header>
 
-	<header class="site-header" aria-label="Site header">
-		<a class="brand" href="/" aria-label="Haphazard.dev home">
-			<span class="prompt" aria-hidden="true">~/</span>haphazard.dev
-		</a>
-		<nav class="top-nav" aria-label="Primary navigation">
-			<a href="#projects">projects</a>
-			{primaryLinks.map((link) => <a href={link.href}>{link.label}</a>)}
-		</nav>
-	</header>
-
-	<main>
-		<section class="hero" aria-labelledby="hero-title">
-			<div class="terminal" aria-label="Project directory terminal preview">
-				<div class="terminal-bar">
-					<span></span><span></span><span></span>
+		<main>
+			<section class="hero" aria-labelledby="hero-title">
+				<div class="hero-kicker" aria-hidden="true">
+					<span>Independent</span><span>Developer</span><span>Tools</span>
 				</div>
-				<div class="terminal-body mono">
-					<p><span class="muted">$</span> ls projects/</p>
-					{projects.map((project) => <p><a href={`#${project.slug}`}>{project.title}</a><span class="comment"> // {project.category}</span></p>)}
-					<p><span class="muted">$</span> open README.md</p>
+				<h1 id="hero-title">
+					<span>MAKE</span>
+					<span class="offset">THE WORK</span>
+					<span class="outline">MOVE.</span>
+				</h1>
+				<div class="hero-foot">
+					<p class="positioning">
+						Sharp tools for messy, multi-repo, keyboard-first software work.
+					</p>
+					<a class="down" href="#projects">
+						See the projects <span aria-hidden="true">↓</span>
+					</a>
 				</div>
-			</div>
-
-			<div class="hero-copy">
-				<p class="eyebrow mono">developer tools · workflow experiments · shipped utilities</p>
-				<h1 id="hero-title">Tools for people who live in editors, terminals, and Git worktrees.</h1>
-				<p class="lede">
-					Haphazard.dev is the home base for my projects: pragmatic extensions, CLIs, and integrations
-					built to make everyday development workflows faster and more keyboard friendly.
-				</p>
-				<div class="hero-actions">
-					<a class="button primary" href="#projects">Explore projects</a>
-					<a class="button" href="https://github.com/corwinm">View GitHub</a>
+				<div class="ticker" aria-hidden="true">
+					<div>
+						<span>EDIT</span><i>●</i><span>SHIP</span><i>●</i><span>SYNC</span><i>●</i><span>REPEAT</span><i>●</i>
+						<span>EDIT</span><i>●</i><span>SHIP</span><i>●</i><span>SYNC</span><i>●</i><span>REPEAT</span><i>●</i>
+					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 
-		<section class="project-index" aria-label="Project quick links">
-			{projects.map((project, index) => (
-				<a class="index-card" href={`#${project.slug}`}>
-					<span class="mono">0{index + 1}</span>
-					<strong>{project.title}</strong>
-					<small>{project.category}</small>
-				</a>
-			))}
-		</section>
+			<section class="projects" id="projects" aria-labelledby="projects-title">
+				<div class="projects-heading">
+					<p>Selected output / 2026</p>
+					<h2 id="projects-title">Four tools.<br />Zero ceremony.</h2>
+					<p class="count">[ 01—{String(projects.length).padStart(2, "0")} ]</p>
+				</div>
 
-		<section id="projects" class="projects" aria-labelledby="projects-title">
-			<div class="section-heading">
-				<p class="eyebrow mono">cat ./projects.json</p>
-				<h2 id="projects-title">Projects</h2>
-			</div>
-
-			<div class="project-list">
-				{projects.map((project, index) => (
-					<article class="project" id={project.slug}>
-						<div class="project-meta mono" aria-hidden="true">project:{String(index + 1).padStart(2, "0")}</div>
-						<div class="project-main">
-							<p class="category mono">{project.category}</p>
-							<h3>{project.title}</h3>
-							<p class="description">{project.description}</p>
-
-							<ul class="highlights" aria-label={`${project.title} highlights`}>
-								{project.highlights.map((highlight) => <li>{highlight}</li>)}
-							</ul>
-						</div>
-
-						<aside class="project-side" aria-label={`${project.title} details`}>
-							<div>
-								<h4 class="mono">stack</h4>
-								<div class="tags">
-									{project.technologies.map((tech) => <span>{tech}</span>)}
+				<div class="project-list">
+					{projects.map((project, index) => (
+						<article class="project" id={project.slug}>
+							<div class="project-bar">
+								<p class="project-number">{String(index + 1).padStart(2, "0")}</p>
+								<div>
+									<p class="category">{project.category}</p>
+									<h3>{project.title}</h3>
+								</div>
+								<span class="mark" aria-hidden="true">↗</span>
+							</div>
+							<div class="project-detail">
+								<p class="description">{project.description}</p>
+								<ul class="highlights" aria-label={`${project.title} highlights`}>
+									{project.highlights.map((highlight) => <li>{highlight}</li>)}
+								</ul>
+								<div class="project-meta">
+									<ul class="technologies" aria-label={`${project.title} technologies`}>
+										{project.technologies.map((technology) => <li>{technology}</li>)}
+									</ul>
+									<div class="project-links" aria-label={`${project.title} links`}>
+										{project.links.map((link) => (
+											<a href={link.href} target="_blank" rel="noreferrer">
+												{link.label}<span aria-hidden="true">↗</span>
+											</a>
+										))}
+									</div>
 								</div>
 							</div>
+						</article>
+					))}
+				</div>
+			</section>
+		</main>
 
-							<div>
-								<h4 class="mono">links</h4>
-								<div class="links">
-									{project.links.map((link) => (
-										<a href={link.href} target="_blank" rel="noreferrer">
-											{link.label}<span aria-hidden="true">↗</span>
-										</a>
-									))}
-								</div>
-							</div>
-						</aside>
-					</article>
-				))}
-			</div>
-		</section>
+		<footer>
+			<p>Haphazard.dev <span>© {new Date().getFullYear()}</span></p>
+			<p>Built by Corwin for the useful edge cases.</p>
+			<a href="#top">Back up ↑</a>
+		</footer>
 
-	</main>
+		<script is:inline>
+			const flipButton = document.querySelector('.flip');
+			const flipLabel = document.querySelector('.flip-label');
 
-	<footer class="site-footer">
-		<p class="mono">© {new Date().getFullYear()} Haphazard.dev</p>
-		<a href="#top" aria-label="Back to top">back to top ↑</a>
-	</footer>
-</Layout>
+			flipButton?.addEventListener('click', () => {
+				const flipped = document.body.classList.toggle('is-flipped');
+				flipButton.setAttribute('aria-pressed', String(flipped));
+				if (flipLabel) flipLabel.textContent = flipped ? 'Reset colors' : 'Flip colors';
+			});
+		</script>
+	</body>
+</html>
 
-<style>
-	.top-anchor {
-		position: absolute;
-		top: 0;
-		left: 0;
+<style is:global>
+	:root {
+		--ink: #101010;
+		--paper: #f2ff3d;
+		--shock: #4b74ff;
+		--hot: #ff4a2d;
+		--cream: #f5f0e7;
+		font-family: Arial, Helvetica, sans-serif;
+		color: var(--ink);
+		background: var(--paper);
+		font-synthesis: none;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		background: var(--paper);
+	}
+
+	body {
+		margin: 0;
+		min-width: 0;
+		overflow-x: clip;
+		background: var(--paper);
+		color: var(--ink);
+		transition: background-color 420ms ease, color 420ms ease;
+	}
+
+	body.is-flipped {
+		--paper: #2457ff;
+		--shock: #f2ff3d;
+		--hot: #ff8069;
+		--cream: #101010;
+		--ink: #f8f5ec;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	button,
+	a {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 3px;
+		box-shadow: 0 0 0 6px #101010 !important;
+	}
+
+	::selection {
+		background: var(--hot);
+		color: #101010;
 	}
 
 	.skip-link {
 		position: fixed;
-		top: 1rem;
-		left: 1rem;
-		z-index: 10;
-		transform: translateY(-200%);
-		border: 1px solid var(--accent);
-		border-radius: 999px;
-		background: var(--bg);
+		top: 0.75rem;
+		left: 0.75rem;
+		z-index: 20;
+		transform: translateY(-160%);
+		border: 3px solid currentColor;
+		background: var(--cream);
 		padding: 0.7rem 1rem;
-		color: var(--accent);
-		text-decoration: none;
+		font-weight: 900;
+		text-transform: uppercase;
 	}
 
 	.skip-link:focus {
 		transform: translateY(0);
 	}
 
-	.site-header,
-	main,
-	.site-footer {
-		width: min(1120px, calc(100% - 2rem));
-		margin-inline: auto;
-	}
-
-	.site-header {
-		position: sticky;
-		top: 0;
-		z-index: 5;
-		display: flex;
+	.masthead {
+		display: grid;
+		grid-template-columns: minmax(12rem, 1fr) auto auto;
 		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		padding: 1rem 0;
-		backdrop-filter: blur(18px);
+		gap: 2rem;
+		border-bottom: 4px solid currentColor;
+		padding: 1rem clamp(1rem, 3vw, 3rem);
+		font-size: 0.75rem;
+		font-weight: 900;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 	}
 
-	.brand,
-	.top-nav a,
-	.button,
-	.index-card,
-	.links a,
-	.site-footer a {
+	.wordmark {
+		display: inline-flex;
+		width: fit-content;
 		text-decoration: none;
 	}
 
-	.brand {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.05rem;
-		font-weight: 800;
-		letter-spacing: -0.03em;
+	.wordmark span {
+		padding: 0.35rem 0.42rem;
 	}
 
-	.prompt,
-	.muted,
-	.category,
-	.eyebrow {
-		color: var(--accent);
+	.wordmark span:first-child {
+		background: var(--ink);
+		color: var(--paper);
 	}
 
-	.top-nav {
+	.wordmark span:last-child {
+		background: var(--hot);
+		color: #101010;
+	}
+
+	.masthead nav {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: flex-end;
-		gap: 0.4rem;
+		justify-content: center;
+		gap: 0.5rem 1.5rem;
 	}
 
-	.top-nav a {
-		border: 1px solid transparent;
-		border-radius: 999px;
-		padding: 0.5rem 0.75rem;
-		color: var(--muted);
-		font-size: 0.92rem;
+	.masthead nav a,
+	.down,
+	footer a {
+		text-decoration-thickness: 2px;
+		text-underline-offset: 0.3em;
 	}
 
-	.top-nav a:hover {
-		border-color: var(--line);
-		color: var(--text);
-		background: rgba(101, 255, 159, 0.06);
+	.masthead nav a:hover,
+	.down:hover,
+	footer a:hover {
+		text-decoration-style: double;
 	}
 
-	.hero {
-		display: grid;
-		grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-		align-items: center;
-		gap: 2rem;
-		min-height: 76vh;
-		padding: 4rem 0 2rem;
-	}
-
-	.terminal,
-	.project,
-	.index-card {
-		border: 1px solid var(--line);
-		background: var(--panel);
-		box-shadow: var(--shadow);
-	}
-
-	.terminal {
-		overflow: hidden;
-		border-radius: 22px;
-		transform: rotate(-1deg);
-	}
-
-	.terminal-bar {
-		display: flex;
-		gap: 0.5rem;
-		border-bottom: 1px solid var(--line);
-		background: rgba(255, 255, 255, 0.03);
-		padding: 0.9rem 1rem;
-	}
-
-	.terminal-bar span {
-		width: 0.75rem;
-		height: 0.75rem;
-		border-radius: 50%;
-		background: var(--muted-2);
-	}
-
-	.terminal-bar span:first-child {
-		background: #ff5f57;
-	}
-
-	.terminal-bar span:nth-child(2) {
-		background: var(--warning);
-	}
-
-	.terminal-bar span:nth-child(3) {
-		background: var(--accent);
-	}
-
-	.terminal-body {
-		padding: 1.25rem;
-		font-size: clamp(0.9rem, 1.8vw, 1.02rem);
-		line-height: 1.9;
-	}
-
-	.terminal-body p {
-		margin: 0;
-	}
-
-	.terminal-body a {
-		color: var(--text);
-		text-decoration-color: rgba(101, 255, 159, 0.35);
-		text-underline-offset: 0.25em;
-	}
-
-	.comment {
-		color: var(--muted-2);
-	}
-
-	.eyebrow {
-		margin: 0 0 1rem;
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-	}
-
-	h1,
-	h2,
-	h3,
-	p {
-		margin-top: 0;
-	}
-
-	h1 {
-		max-width: 12ch;
-		margin-bottom: 1.4rem;
-		font-size: clamp(3.2rem, 9vw, 7rem);
-		line-height: 0.88;
-		letter-spacing: -0.08em;
-	}
-
-	.lede {
-		max-width: 62ch;
-		color: var(--muted);
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
-		line-height: 1.7;
-	}
-
-	.hero-actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.8rem;
-		margin-top: 2rem;
-	}
-
-	.button {
+	.flip {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		border: 1px solid var(--line-strong);
-		border-radius: 999px;
-		padding: 0.8rem 1.05rem;
-		color: var(--text);
-		font-weight: 700;
+		gap: 0.7rem;
+		min-width: 44px;
+		min-height: 44px;
+		border: 3px solid currentColor;
+		border-radius: 0;
+		background: transparent;
+		padding: 0.65rem 0.8rem;
+		color: inherit;
+		font: inherit;
+		text-transform: uppercase;
+		box-shadow: 4px 4px 0 currentColor;
+		cursor: pointer;
+		transition: transform 160ms ease, box-shadow 160ms ease;
 	}
 
-	.button.primary {
-		border-color: transparent;
-		background: var(--accent);
-		color: #04210e;
+	.flip:hover,
+	.flip[aria-pressed="true"] {
+		transform: translate(4px, 4px);
+		box-shadow: 0 0 0 currentColor;
 	}
 
-	.button:hover,
-	.index-card:hover,
-	.links a:hover {
-		transform: translateY(-1px);
-	}
-
-	.project-index {
+	.hero {
+		position: relative;
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0.8rem;
-		margin: 1rem 0 6rem;
+		grid-template-columns: clamp(4rem, 9vw, 9rem) minmax(0, 1fr);
+		min-height: calc(100svh - 74px);
+		border-bottom: 4px solid currentColor;
 	}
 
-	.index-card {
-		display: grid;
-		gap: 0.35rem;
-		border-radius: 18px;
-		padding: 1rem;
-		transition: transform 180ms ease, border-color 180ms ease;
-	}
-
-	.index-card:hover {
-		border-color: var(--line-strong);
-	}
-
-	.index-card span,
-	.index-card small {
-		color: var(--muted-2);
-	}
-
-	.projects {
-		padding: 2rem 0 6rem;
-	}
-
-	.section-heading {
-		display: grid;
-		grid-template-columns: 0.85fr 1.15fr;
-		gap: 1.5rem;
-		align-items: end;
-		margin-bottom: 1.5rem;
-	}
-
-	.section-heading h2 {
-		margin-bottom: 0;
-		font-size: clamp(2.2rem, 5vw, 4rem);
-		line-height: 0.95;
-		letter-spacing: -0.06em;
-	}
-
-
-	.project-list {
-		display: grid;
-		gap: 1rem;
-	}
-
-	.project {
-		display: grid;
-		grid-template-columns: 8rem minmax(0, 1fr) 18rem;
-		gap: 1.4rem;
-		scroll-margin-top: 6rem;
-		border-radius: 26px;
-		padding: 1.2rem;
-	}
-
-	.project-meta {
-		color: var(--muted-2);
+	.hero-kicker {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		border-right: 4px solid currentColor;
+		padding: 1.25rem 0;
+		font-size: clamp(0.62rem, 1vw, 0.8rem);
+		font-weight: 900;
+		letter-spacing: 0.12em;
+		text-align: center;
+		text-transform: uppercase;
 		writing-mode: vertical-rl;
 	}
 
-	.project h3 {
-		margin-bottom: 0.8rem;
-		font-size: clamp(2rem, 4vw, 3.5rem);
-		line-height: 0.95;
-		letter-spacing: -0.05em;
-	}
-
-	.description,
-	.highlights {
-		color: var(--muted);
-		line-height: 1.7;
-	}
-
-	.highlights {
-		padding-left: 1.2rem;
-	}
-
-	.highlights li + li {
-		margin-top: 0.55rem;
-	}
-
-	.project-side {
-		display: flex;
-		flex-direction: column;
-		gap: 1.3rem;
-		border-left: 1px solid var(--line);
-		padding-left: 1.3rem;
-	}
-
-	h4 {
-		margin: 0 0 0.8rem;
-		color: var(--muted-2);
-		font-size: 0.76rem;
-		letter-spacing: 0.18em;
+	.hero h1 {
+		position: relative;
+		z-index: 1;
+		align-self: center;
+		min-width: 0;
+		margin: 0;
+		padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 4vw, 4rem) 8rem;
+		font-family: Impact, "Arial Black", Arial, sans-serif;
+		font-size: clamp(4.2rem, 15.7vw, 15rem);
+		font-weight: 900;
+		letter-spacing: -0.065em;
+		line-height: 0.69;
 		text-transform: uppercase;
 	}
 
-	.tags,
-	.links {
+	.hero h1 span {
+		display: block;
+		max-width: 100%;
+	}
+
+	.hero h1 .offset {
+		color: var(--shock);
+		transform: translateX(clamp(0rem, 5vw, 5rem));
+	}
+
+	.hero h1 .outline {
+		color: transparent;
+		-webkit-text-stroke: clamp(2px, 0.4vw, 6px) currentColor;
+	}
+
+	.hero-foot {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: clamp(4rem, 9vw, 9rem);
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: end;
+		gap: 2rem;
+		border-top: 4px solid currentColor;
+		background: var(--cream);
+		color: var(--ink);
+		padding: 1rem clamp(1rem, 4vw, 4rem);
+	}
+
+	.positioning {
+		max-width: 48ch;
+		margin: 0;
+		font-size: clamp(1rem, 1.8vw, 1.5rem);
+		font-weight: 800;
+		line-height: 1.15;
+	}
+
+	.down {
+		font-size: 0.78rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.ticker {
+		position: absolute;
+		top: 8%;
+		right: 0;
+		z-index: 0;
+		width: min(70%, 70rem);
+		overflow: hidden;
+		transform: rotate(-6deg);
+		background: var(--hot);
+		color: #101010;
+		font-size: clamp(0.8rem, 1.6vw, 1.2rem);
+		font-weight: 900;
+		letter-spacing: 0.1em;
+		white-space: nowrap;
+	}
+
+	.ticker div {
+		display: flex;
+		width: max-content;
+		gap: 1.2rem;
+		padding: 0.55rem;
+		animation: crawl 18s linear infinite;
+	}
+
+	.ticker i {
+		font-style: normal;
+	}
+
+	.projects {
+		background: var(--cream);
+		color: var(--ink);
+	}
+
+	.projects-heading {
+		display: grid;
+		grid-template-columns: 1fr 2fr auto;
+		align-items: start;
+		gap: 2rem;
+		border-bottom: 4px solid currentColor;
+		padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 3rem);
+	}
+
+	.projects-heading p {
+		margin: 0;
+		font-size: 0.72rem;
+		font-weight: 900;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.projects-heading h2 {
+		margin: 0;
+		font-family: Impact, "Arial Black", Arial, sans-serif;
+		font-size: clamp(3rem, 8vw, 7.8rem);
+		font-weight: 900;
+		letter-spacing: -0.045em;
+		line-height: 0.82;
+		text-transform: uppercase;
+	}
+
+	.count {
+		font-size: 1rem !important;
+	}
+
+	.project {
+		scroll-margin-top: 1rem;
+		border-bottom: 4px solid currentColor;
+	}
+
+	.project-bar {
+		display: grid;
+		grid-template-columns: clamp(3.5rem, 7vw, 7rem) minmax(0, 1fr) auto;
+		align-items: center;
+		gap: clamp(0.8rem, 2vw, 2rem);
+		min-width: 0;
+		padding: clamp(1rem, 2.5vw, 2.5rem) clamp(1rem, 3vw, 3rem);
+		background: var(--paper);
+		transition: background-color 240ms ease, color 240ms ease;
+	}
+
+	.project:nth-child(even) .project-bar {
+		background: var(--shock);
+		color: var(--ink);
+	}
+
+	body.is-flipped .project-bar {
+		color: var(--ink);
+	}
+
+	body.is-flipped .project:nth-child(even) .project-bar {
+		color: #101010;
+	}
+
+	.project:hover .project-bar {
+		background: var(--hot);
+		color: #101010;
+	}
+
+	.project-number {
+		align-self: start;
+		margin: 0;
+		font-size: clamp(1rem, 2vw, 1.8rem);
+		font-weight: 900;
+	}
+
+	.category {
+		margin: 0 0 0.4rem;
+		font-size: clamp(0.62rem, 1vw, 0.78rem);
+		font-weight: 900;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+	}
+
+	.project h3 {
+		min-width: 0;
+		margin: 0;
+		font-family: Impact, "Arial Black", Arial, sans-serif;
+		font-size: clamp(2.3rem, 8vw, 8rem);
+		font-weight: 900;
+		letter-spacing: -0.045em;
+		line-height: 0.78;
+		overflow-wrap: anywhere;
+		text-transform: uppercase;
+	}
+
+	.mark {
+		font-size: clamp(2.5rem, 7vw, 7rem);
+		font-weight: 900;
+		line-height: 0.7;
+	}
+
+	.project-detail {
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(14rem, 0.8fr);
+		gap: clamp(1.5rem, 4vw, 4rem);
+		padding: clamp(1.5rem, 4vw, 4rem) clamp(1rem, 3vw, 3rem);
+	}
+
+	.description {
+		margin: 0;
+		font-size: clamp(1.2rem, 2.2vw, 2rem);
+		font-weight: 800;
+		line-height: 1.12;
+	}
+
+	.highlights {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0.92rem;
+		font-weight: 600;
+		line-height: 1.45;
+	}
+
+	.highlights li {
+		border-top: 2px solid currentColor;
+		padding: 0.65rem 0;
+	}
+
+	.highlights li::before {
+		content: "→ ";
+		font-weight: 900;
+	}
+
+	.project-meta {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 2rem;
+	}
+
+	.technologies {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.technologies li {
+		border: 2px solid currentColor;
+		padding: 0.35rem 0.5rem;
+		font-size: 0.65rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.project-links {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
 	}
 
-	.tags span,
-	.links a,
-	code {
-		border: 1px solid var(--line);
-		border-radius: 999px;
-		background: rgba(101, 255, 159, 0.06);
-	}
-
-	.tags span,
-	.links a {
-		padding: 0.45rem 0.65rem;
-		font-size: 0.85rem;
-	}
-
-	.tags span {
-		color: var(--muted);
-	}
-
-	.links a {
+	.project-links a {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.35rem;
-		color: var(--text);
-		transition: transform 180ms ease, border-color 180ms ease;
-	}
-
-	.links a:hover {
-		border-color: var(--accent);
-	}
-
-
-	code {
-		padding: 0.1rem 0.35rem;
-		color: var(--accent);
-		font-size: 0.9em;
-	}
-
-	.site-footer {
-		display: flex;
 		justify-content: space-between;
 		gap: 1rem;
-		border-top: 1px solid var(--line);
-		padding: 2rem 0 3rem;
-		color: var(--muted-2);
+		min-width: 7rem;
+		border-bottom: 3px solid currentColor;
+		padding: 0.45rem 0;
+		font-size: 0.78rem;
+		font-weight: 900;
+		letter-spacing: 0.04em;
+		text-decoration: none;
+		text-transform: uppercase;
 	}
 
-	.site-footer p {
+	.project-links a:hover {
+		background: var(--hot);
+		color: #101010;
+	}
+
+	footer {
+		display: grid;
+		grid-template-columns: 1fr 2fr auto;
+		gap: 2rem;
+		background: var(--ink);
+		color: var(--paper);
+		padding: 2rem clamp(1rem, 3vw, 3rem);
+		font-size: 0.72rem;
+		font-weight: 900;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	footer p {
 		margin: 0;
 	}
 
-	.site-footer a {
-		color: var(--muted);
+	footer p span {
+		white-space: nowrap;
 	}
 
-	@media (max-width: 900px) {
-		.site-header,
-		.hero,
-		.section-heading,
-		.project {
-			grid-template-columns: 1fr;
+	@keyframes crawl {
+		to { transform: translateX(-50%); }
+	}
+
+	@media (max-width: 760px) {
+		.masthead {
+			grid-template-columns: 1fr auto;
+			gap: 0.8rem;
 		}
 
-		.site-header {
-			display: grid;
-		}
-
-		.top-nav {
+		.masthead nav {
+			grid-column: 1 / -1;
+			grid-row: 2;
 			justify-content: flex-start;
+			border-top: 2px solid currentColor;
+			padding-top: 0.75rem;
+		}
+
+		.flip-label {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
 		}
 
 		.hero {
-			min-height: auto;
-			padding-top: 2rem;
+			grid-template-columns: 2.75rem minmax(0, 1fr);
+			min-height: 42rem;
 		}
 
-		.terminal {
-			order: 2;
+		.hero-kicker {
+			font-size: 0.55rem;
+		}
+
+		.hero h1 {
+			padding: 4rem 0.85rem 9rem;
+			font-size: clamp(3.7rem, 21vw, 7rem);
+			line-height: 0.76;
+		}
+
+		.hero h1 .offset {
 			transform: none;
 		}
 
-		.project-index {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-			margin-bottom: 4rem;
+		.hero-foot {
+			left: 2.75rem;
+			grid-template-columns: 1fr;
+			gap: 0.8rem;
 		}
 
-		.project-meta {
-			writing-mode: initial;
+		.ticker {
+			top: 3rem;
+			width: 85%;
 		}
 
-		.project-side {
-			border-top: 1px solid var(--line);
-			border-left: 0;
-			padding-top: 1.2rem;
-			padding-left: 0;
-		}
-	}
-
-	@media (max-width: 560px) {
-		.site-header,
-		main,
-		.site-footer {
-			width: min(100% - 1rem, 1120px);
+		.projects-heading {
+			grid-template-columns: 1fr auto;
 		}
 
-		h1 {
-			font-size: clamp(2.8rem, 18vw, 4.8rem);
+		.projects-heading h2 {
+			grid-column: 1 / -1;
+			grid-row: 2;
 		}
 
-		.project-index {
+		.project-bar {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+		}
+
+		.mark {
+			display: none;
+		}
+
+		.project h3 {
+			font-size: clamp(2.5rem, 14vw, 5rem);
+			line-height: 0.84;
+		}
+
+		.project-detail {
 			grid-template-columns: 1fr;
 		}
 
-		.project {
-			border-radius: 20px;
-			padding: 1rem;
+		footer {
+			grid-template-columns: 1fr auto;
 		}
 
-		.site-footer {
-			flex-direction: column;
+		footer p:nth-child(2) {
+			display: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html { scroll-behavior: auto; }
+		*, *::before, *::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
 		}
 	}
 </style>
