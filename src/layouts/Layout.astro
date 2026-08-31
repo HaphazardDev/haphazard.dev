@@ -3,12 +3,16 @@ interface Props {
 	title?: string;
 	description?: string;
 	imagePath?: string;
+	robots?: string;
+	themeColor?: string;
 }
 
 const {
 	title = "Haphazard.dev — developer tools by Corwin",
 	description = "A home base for Corwin's developer tools, extensions, CLIs, and workflow experiments.",
 	imagePath = "/og-image.png",
+	robots,
+	themeColor = "#07100c",
 } = Astro.props;
 
 const site = Astro.site ?? new URL("https://haphazard.dev");
@@ -27,7 +31,8 @@ const imageUrl = new URL(imagePath, site).toString();
 		<link rel="sitemap" href="/sitemap-index.xml" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
-		<meta name="theme-color" content="#07100c" />
+		{robots && <meta name="robots" content={robots} />}
+		<meta name="theme-color" content={themeColor} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
