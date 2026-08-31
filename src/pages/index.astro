@@ -2,137 +2,211 @@
 import Layout from "../layouts/Layout.astro";
 import { projects } from "../data/projects";
 
-const primaryLinks = [
-	{ label: "GitHub", href: "https://github.com/corwinm" },
-	{ label: "HaphazardDev", href: "https://github.com/HaphazardDev" },
+const principles = [
+	{
+		number: "01",
+		title: "Start with friction.",
+		body: "The useful idea is usually hiding inside a repeated annoyance—not waiting in a roadmap template.",
+	},
+	{
+		number: "02",
+		title: "Stay close to the work.",
+		body: "Editors, terminals, worktrees, and coding agents are the material. The tool should fit the way the work already moves.",
+	},
+	{
+		number: "03",
+		title: "Ship the smallest sharp thing.",
+		body: "A focused utility that earns a place in the daily loop beats a broad idea that never leaves the notebook.",
+	},
 ];
 ---
 
 <Layout
-	title="Haphazard.dev — developer tools by Corwin"
-	description="A dev-first home page for Corwin's projects: VS Code extensions, CLIs, tmux integrations, and pi ecosystem experiments."
+	title="Haphazard.dev — Working Notes"
+	description="Working notes and real project evidence from Corwin's developer tools, extensions, CLIs, and workflow experiments."
+	robots="noindex,nofollow"
+	themeColor="#fff8e7"
 >
-	<a class="skip-link" href="#projects">Skip to projects</a>
-
+	<a class="skip-link" href="#main-content">Skip to main content</a>
 	<span id="top" class="top-anchor" aria-hidden="true"></span>
 
-	<header class="site-header" aria-label="Site header">
+	<header class="site-header">
 		<a class="brand" href="/" aria-label="Haphazard.dev home">
-			<span class="prompt" aria-hidden="true">~/</span>haphazard.dev
+			<span>haphazard</span><b>.dev</b>
 		</a>
 		<nav class="top-nav" aria-label="Primary navigation">
-			<a href="#projects">projects</a>
-			{primaryLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+			<a href="#approach">Approach</a>
+			<a href="#projects">Projects</a>
+			<a href="https://github.com/HaphazardDev" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
 		</nav>
 	</header>
 
-	<main>
+	<main id="main-content">
 		<section class="hero" aria-labelledby="hero-title">
-			<div class="terminal" aria-label="Project directory terminal preview">
-				<div class="terminal-bar">
-					<span></span><span></span><span></span>
-				</div>
-				<div class="terminal-body mono">
-					<p><span class="muted">$</span> ls projects/</p>
-					{projects.map((project) => <p><a href={`#${project.slug}`}>{project.title}</a><span class="comment"> // {project.category}</span></p>)}
-					<p><span class="muted">$</span> open README.md</p>
+			<div class="hero-copy">
+				<p class="edition">Working notes · developer tools · Corwin</p>
+				<h1 id="hero-title">Software for<br /> the <em>awkward</em><br /> parts.</h1>
+				<p class="lede">
+					Haphazard is where small developer tools get worked out in public: utilities for the moments
+					when editors, terminals, worktrees, and coding agents almost fit the job—but not quite.
+				</p>
+				<div class="hero-links" aria-label="Introduction links">
+					<a class="primary-link" href="#projects">Read the project notes <span aria-hidden="true">↓</span></a>
+					<a href="https://github.com/corwinm" target="_blank" rel="noreferrer">Corwin on GitHub <span aria-hidden="true">↗</span></a>
 				</div>
 			</div>
 
-			<div class="hero-copy">
-				<p class="eyebrow mono">developer tools · workflow experiments · shipped utilities</p>
-				<h1 id="hero-title">Tools for people who live in editors, terminals, and Git worktrees.</h1>
-				<p class="lede">
-					Haphazard.dev is the home base for my projects: pragmatic extensions, CLIs, and integrations
-					built to make everyday development workflows faster and more keyboard friendly.
-				</p>
-				<div class="hero-actions">
-					<a class="button primary" href="#projects">Explore projects</a>
-					<a class="button" href="https://github.com/corwinm">View GitHub</a>
-				</div>
-			</div>
+			<aside class="working-note" aria-label="Working premise">
+				<span class="tape" aria-hidden="true"></span>
+				<p class="note-label">Working premise</p>
+				<p>Most of these tools begin with a very unglamorous question:</p>
+				<blockquote>“Why is this still annoying?”</blockquote>
+				<p class="note-signoff">— then a prototype, then another pass</p>
+			</aside>
 		</section>
 
-		<section class="project-index" aria-label="Project quick links">
-			{projects.map((project, index) => (
-				<a class="index-card" href={`#${project.slug}`}>
-					<span class="mono">0{index + 1}</span>
-					<strong>{project.title}</strong>
-					<small>{project.category}</small>
-				</a>
-			))}
+		<div class="subject-line" aria-label="Topics covered">
+			<span>Notes on</span>
+			<ul>
+				<li>worktrees</li>
+				<li>editors</li>
+				<li>terminals</li>
+				<li>coding agents</li>
+			</ul>
+		</div>
+
+		<section id="approach" class="approach" aria-labelledby="approach-title">
+			<div class="section-intro">
+				<p class="section-kicker">How a tool earns its keep</p>
+				<h2 id="approach-title">A practical filter for what gets built.</h2>
+			</div>
+			<ol class="principles">
+				{principles.map((principle) => (
+					<li>
+						<span class="principle-number" aria-hidden="true">{principle.number}</span>
+						<div>
+							<h3>{principle.title}</h3>
+							<p>{principle.body}</p>
+						</div>
+					</li>
+				))}
+			</ol>
 		</section>
 
 		<section id="projects" class="projects" aria-labelledby="projects-title">
-			<div class="section-heading">
-				<p class="eyebrow mono">cat ./projects.json</p>
-				<h2 id="projects-title">Projects</h2>
-			</div>
+			<header class="projects-header">
+				<div>
+					<p class="section-kicker">Evidence from the workbench</p>
+					<h2 id="projects-title">Project notes</h2>
+				</div>
+				<p>
+					Not a mood board: shipped extensions, working CLIs, and open experiments. Follow the links for the source, package, or documentation.
+				</p>
+			</header>
 
 			<div class="project-list">
 				{projects.map((project, index) => (
 					<article class="project" id={project.slug}>
-						<div class="project-meta mono" aria-hidden="true">project:{String(index + 1).padStart(2, "0")}</div>
-						<div class="project-main">
-							<p class="category mono">{project.category}</p>
+						<div class="project-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</div>
+						<div class="project-copy">
+							<p class="project-category">{project.category}</p>
 							<h3>{project.title}</h3>
-							<p class="description">{project.description}</p>
-
+							<p class="project-description">{project.description}</p>
 							<ul class="highlights" aria-label={`${project.title} highlights`}>
 								{project.highlights.map((highlight) => <li>{highlight}</li>)}
 							</ul>
 						</div>
-
-						<aside class="project-side" aria-label={`${project.title} details`}>
+						<div class="project-evidence">
 							<div>
-								<h4 class="mono">stack</h4>
-								<div class="tags">
-									{project.technologies.map((tech) => <span>{tech}</span>)}
-								</div>
+								<p class="evidence-label">Built with</p>
+								<ul class="technologies" aria-label={`${project.title} technologies`}>
+									{project.technologies.map((technology) => <li>{technology}</li>)}
+								</ul>
 							</div>
-
 							<div>
-								<h4 class="mono">links</h4>
-								<div class="links">
+								<p class="evidence-label">Go to</p>
+								<ul class="project-links" aria-label={`${project.title} links`}>
 									{project.links.map((link) => (
-										<a href={link.href} target="_blank" rel="noreferrer">
-											{link.label}<span aria-hidden="true">↗</span>
-										</a>
+										<li><a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a></li>
 									))}
-								</div>
+								</ul>
 							</div>
-						</aside>
+						</div>
 					</article>
 				))}
 			</div>
 		</section>
-
 	</main>
 
 	<footer class="site-footer">
-		<p class="mono">© {new Date().getFullYear()} Haphazard.dev</p>
-		<a href="#top" aria-label="Back to top">back to top ↑</a>
+		<p><strong>Haphazard.dev</strong> · small tools, worked out carefully.</p>
+		<a href="#top">Back to top <span aria-hidden="true">↑</span></a>
 	</footer>
 </Layout>
 
 <style>
+	:global(:root) {
+		color-scheme: light;
+		--paper: #fff8e7;
+		--paper-deep: #f5ecd6;
+		--ink: #17241a;
+		--muted-ink: #596158;
+		--coral: #ef5b3f;
+		--coral-dark: #bd3826;
+		--yellow: #f7db70;
+		--rule: #cfc5ae;
+		--dot: rgba(71, 78, 67, 0.16);
+		--font-sans: "Avenir Next", Avenir, "Century Gothic", Futura, sans-serif;
+		--font-serif: Iowan Old Style, "Palatino Linotype", Palatino, Georgia, serif;
+		background: var(--paper);
+		color: var(--ink);
+		font-family: var(--font-sans);
+	}
+
+	:global(html) {
+		scroll-behavior: smooth;
+		scroll-padding-top: 6rem;
+	}
+
+	:global(body) {
+		overflow-x: clip;
+		background-color: var(--paper);
+		background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.15px);
+		background-position: 0 0;
+		background-size: 19px 19px;
+		color: var(--ink);
+	}
+
+	:global(body::before) {
+		display: none;
+	}
+
+	:global(::selection) {
+		background: var(--yellow);
+		color: var(--ink);
+	}
+
+	:global(:focus-visible) {
+		outline: 3px solid var(--coral-dark);
+		outline-offset: 4px;
+	}
+
 	.top-anchor {
 		position: absolute;
 		top: 0;
-		left: 0;
 	}
 
 	.skip-link {
 		position: fixed;
-		top: 1rem;
-		left: 1rem;
-		z-index: 10;
-		transform: translateY(-200%);
-		border: 1px solid var(--accent);
-		border-radius: 999px;
-		background: var(--bg);
-		padding: 0.7rem 1rem;
-		color: var(--accent);
+		top: 0.75rem;
+		left: 0.75rem;
+		z-index: 20;
+		transform: translateY(-160%);
+		border: 2px solid var(--ink);
+		background: var(--yellow);
+		padding: 0.75rem 1rem;
+		color: var(--ink);
+		font-weight: 800;
 		text-decoration: none;
 	}
 
@@ -143,143 +217,103 @@ const primaryLinks = [
 	.site-header,
 	main,
 	.site-footer {
-		width: min(1120px, calc(100% - 2rem));
+		width: min(1160px, calc(100% - 2.5rem));
 		margin-inline: auto;
 	}
 
 	.site-header {
-		position: sticky;
-		top: 0;
-		z-index: 5;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
-		padding: 1rem 0;
-		backdrop-filter: blur(18px);
+		gap: 2rem;
+		border-bottom: 2px solid var(--ink);
+		padding: 1.15rem 0;
 	}
 
 	.brand,
 	.top-nav a,
-	.button,
-	.index-card,
-	.links a,
+	.hero-links a,
+	.project-links a,
 	.site-footer a {
+		color: inherit;
 		text-decoration: none;
 	}
 
 	.brand {
 		display: inline-flex;
-		align-items: center;
-		gap: 0.05rem;
+		align-items: baseline;
+		min-height: 44px;
+		font-size: 1.25rem;
 		font-weight: 800;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.045em;
 	}
 
-	.prompt,
-	.muted,
-	.category,
-	.eyebrow {
-		color: var(--accent);
+	.brand span {
+		display: inline-block;
+		transform: rotate(-1.5deg);
+		background: var(--coral);
+		padding: 0.14rem 0.38rem 0.1rem;
+		color: #fffaf0;
+	}
+
+	.brand b {
+		font-weight: 800;
 	}
 
 	.top-nav {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-		gap: 0.4rem;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.top-nav a,
+	.hero-links a,
+	.project-links a,
+	.site-footer a {
+		display: inline-flex;
+		min-height: 44px;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.top-nav a {
-		border: 1px solid transparent;
-		border-radius: 999px;
-		padding: 0.5rem 0.75rem;
-		color: var(--muted);
-		font-size: 0.92rem;
+		padding: 0.55rem 0.7rem;
+		font-size: 0.8rem;
+		font-weight: 800;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 	}
 
-	.top-nav a:hover {
-		border-color: var(--line);
-		color: var(--text);
-		background: rgba(101, 255, 159, 0.06);
+	.top-nav a:hover,
+	.site-footer a:hover {
+		text-decoration: underline;
+		text-decoration-color: var(--coral);
+		text-decoration-thickness: 3px;
+		text-underline-offset: 0.28em;
 	}
 
 	.hero {
 		display: grid;
-		grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+		grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.65fr);
 		align-items: center;
-		gap: 2rem;
-		min-height: 76vh;
-		padding: 4rem 0 2rem;
+		gap: clamp(3rem, 8vw, 7rem);
+		padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(5rem, 10vw, 8.5rem);
 	}
 
-	.terminal,
-	.project,
-	.index-card {
-		border: 1px solid var(--line);
-		background: var(--panel);
-		box-shadow: var(--shadow);
-	}
-
-	.terminal {
-		overflow: hidden;
-		border-radius: 22px;
-		transform: rotate(-1deg);
-	}
-
-	.terminal-bar {
-		display: flex;
-		gap: 0.5rem;
-		border-bottom: 1px solid var(--line);
-		background: rgba(255, 255, 255, 0.03);
-		padding: 0.9rem 1rem;
-	}
-
-	.terminal-bar span {
-		width: 0.75rem;
-		height: 0.75rem;
-		border-radius: 50%;
-		background: var(--muted-2);
-	}
-
-	.terminal-bar span:first-child {
-		background: #ff5f57;
-	}
-
-	.terminal-bar span:nth-child(2) {
-		background: var(--warning);
-	}
-
-	.terminal-bar span:nth-child(3) {
-		background: var(--accent);
-	}
-
-	.terminal-body {
-		padding: 1.25rem;
-		font-size: clamp(0.9rem, 1.8vw, 1.02rem);
-		line-height: 1.9;
-	}
-
-	.terminal-body p {
-		margin: 0;
-	}
-
-	.terminal-body a {
-		color: var(--text);
-		text-decoration-color: rgba(101, 255, 159, 0.35);
-		text-underline-offset: 0.25em;
-	}
-
-	.comment {
-		color: var(--muted-2);
-	}
-
-	.eyebrow {
-		margin: 0 0 1rem;
-		font-size: 0.8rem;
-		font-weight: 700;
-		letter-spacing: 0.18em;
+	.edition,
+	.section-kicker,
+	.project-category,
+	.evidence-label,
+	.note-label {
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
 		text-transform: uppercase;
+	}
+
+	.edition {
+		margin: 0 0 1.5rem;
+		color: var(--coral-dark);
 	}
 
 	h1,
@@ -289,277 +323,469 @@ const primaryLinks = [
 		margin-top: 0;
 	}
 
+	.hero-copy {
+		min-width: 0;
+	}
+
 	h1 {
-		max-width: 12ch;
-		margin-bottom: 1.4rem;
-		font-size: clamp(3.2rem, 9vw, 7rem);
-		line-height: 0.88;
-		letter-spacing: -0.08em;
+		max-width: 11ch;
+		margin-bottom: 1.5rem;
+		font-size: clamp(3.8rem, 7vw, 6.25rem);
+		line-height: 0.9;
+		letter-spacing: -0.075em;
+	}
+
+	h1 em {
+		position: relative;
+		color: var(--coral);
+		font-family: var(--font-serif);
+		font-weight: 400;
+		letter-spacing: -0.05em;
+	}
+
+	h1 em::after {
+		position: absolute;
+		right: 0;
+		bottom: -0.1em;
+		left: 0.08em;
+		height: 0.08em;
+		transform: rotate(-1deg);
+		background: currentColor;
+		content: "";
 	}
 
 	.lede {
-		max-width: 62ch;
-		color: var(--muted);
-		font-size: clamp(1.05rem, 2vw, 1.25rem);
+		max-width: 63ch;
+		margin-bottom: 2rem;
+		color: var(--muted-ink);
+		font-size: clamp(1.05rem, 1.6vw, 1.23rem);
 		line-height: 1.7;
 	}
 
-	.hero-actions {
+	.hero-links {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.8rem;
-		margin-top: 2rem;
+		gap: 0.65rem 1.25rem;
 	}
 
-	.button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border: 1px solid var(--line-strong);
-		border-radius: 999px;
-		padding: 0.8rem 1.05rem;
-		color: var(--text);
+	.hero-links a {
+		border-bottom: 2px solid var(--ink);
+		font-size: 0.9rem;
+		font-weight: 800;
+	}
+
+	.hero-links a:hover,
+	.project-links a:hover {
+		border-color: var(--coral);
+		color: var(--coral-dark);
+	}
+
+	.hero-links .primary-link {
+		border: 2px solid var(--ink);
+		box-shadow: 4px 4px 0 var(--ink);
+		background: var(--yellow);
+		padding: 0.65rem 0.9rem;
+	}
+
+	.hero-links .primary-link:hover {
+		transform: translate(1px, 1px);
+		box-shadow: 3px 3px 0 var(--ink);
+		color: var(--ink);
+	}
+
+	.working-note {
+		position: relative;
+		transform: rotate(1.6deg);
+		border: 2px solid var(--ink);
+		box-shadow: 7px 8px 0 var(--ink);
+		background: var(--yellow);
+		padding: 2.1rem 1.75rem 1.7rem;
+	}
+
+	.tape {
+		position: absolute;
+		top: -0.75rem;
+		left: 50%;
+		width: 6.5rem;
+		height: 1.45rem;
+		transform: translateX(-50%) rotate(-3deg);
+		background: rgba(221, 203, 166, 0.82);
+	}
+
+	.note-label {
+		margin-bottom: 1.15rem;
+	}
+
+	.working-note > p:not([class]) {
+		margin-bottom: 0.65rem;
+		line-height: 1.55;
+	}
+
+	blockquote {
+		margin: 1rem 0;
+		font-family: var(--font-serif);
+		font-size: clamp(1.55rem, 2.8vw, 2.15rem);
+		font-style: italic;
+		line-height: 1.15;
+	}
+
+	.note-signoff {
+		margin: 1.4rem 0 0;
+		font-size: 0.76rem;
 		font-weight: 700;
 	}
 
-	.button.primary {
-		border-color: transparent;
-		background: var(--accent);
-		color: #04210e;
+	.subject-line {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		align-items: center;
+		gap: 1.25rem;
+		border-block: 2px solid var(--ink);
+		background: var(--ink);
+		padding: 0.8rem 1.25rem;
+		color: var(--paper);
 	}
 
-	.button:hover,
-	.index-card:hover,
-	.links a:hover {
-		transform: translateY(-1px);
+	.subject-line > span {
+		color: var(--yellow);
+		font-size: 0.72rem;
+		font-weight: 800;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 	}
 
+	.subject-line ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.2rem 1.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		font-family: var(--font-serif);
+		font-size: 1rem;
+		font-style: italic;
+	}
+
+	.subject-line li:not(:last-child)::after {
+		margin-left: 1.5rem;
+		color: var(--coral);
+		content: "/";
+	}
+
+	.approach {
+		display: grid;
+		grid-template-columns: minmax(15rem, 0.7fr) minmax(0, 1.3fr);
+		gap: clamp(3rem, 9vw, 8rem);
+		padding: clamp(6rem, 11vw, 10rem) 0;
+	}
+
+	.section-kicker {
+		margin-bottom: 1.15rem;
+		color: var(--coral-dark);
+	}
+
+	.section-intro h2,
+	.projects-header h2 {
+		margin-bottom: 0;
+		font-size: clamp(2.6rem, 5vw, 4.8rem);
+		line-height: 0.98;
+		letter-spacing: -0.055em;
+	}
+
+	.principles {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.principles li {
+		display: grid;
+		grid-template-columns: 3.2rem 1fr;
+		gap: 1.25rem;
+		border-top: 1px solid var(--ink);
+		padding: 1.4rem 0 1.5rem;
+	}
+
+	.principles li:last-child {
+		border-bottom: 1px solid var(--ink);
+	}
+
+	.principle-number,
 	.project-index {
-		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-		gap: 0.8rem;
-		margin: 1rem 0 6rem;
+		color: var(--coral-dark);
+		font-family: var(--font-serif);
+		font-style: italic;
 	}
 
-	.index-card {
-		display: grid;
-		gap: 0.35rem;
-		border-radius: 18px;
-		padding: 1rem;
-		transition: transform 180ms ease, border-color 180ms ease;
+	.principles h3 {
+		margin-bottom: 0.5rem;
+		font-size: 1.35rem;
+		letter-spacing: -0.025em;
 	}
 
-	.index-card:hover {
-		border-color: var(--line-strong);
-	}
-
-	.index-card span,
-	.index-card small {
-		color: var(--muted-2);
+	.principles p {
+		max-width: 58ch;
+		margin-bottom: 0;
+		color: var(--muted-ink);
+		line-height: 1.65;
 	}
 
 	.projects {
-		padding: 2rem 0 6rem;
+		padding: 1rem 0 clamp(6rem, 10vw, 9rem);
 	}
 
-	.section-heading {
+	.projects-header {
 		display: grid;
-		grid-template-columns: 0.85fr 1.15fr;
-		gap: 1.5rem;
+		grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.8fr);
 		align-items: end;
-		margin-bottom: 1.5rem;
+		gap: clamp(2rem, 8vw, 7rem);
+		border-bottom: 3px solid var(--ink);
+		padding-bottom: 2rem;
 	}
 
-	.section-heading h2 {
+	.projects-header > p {
+		max-width: 55ch;
 		margin-bottom: 0;
-		font-size: clamp(2.2rem, 5vw, 4rem);
-		line-height: 0.95;
-		letter-spacing: -0.06em;
-	}
-
-
-	.project-list {
-		display: grid;
-		gap: 1rem;
+		color: var(--muted-ink);
+		line-height: 1.65;
 	}
 
 	.project {
 		display: grid;
-		grid-template-columns: 8rem minmax(0, 1fr) 18rem;
-		gap: 1.4rem;
-		scroll-margin-top: 6rem;
-		border-radius: 26px;
-		padding: 1.2rem;
+		grid-template-columns: 3rem minmax(0, 1.35fr) minmax(15rem, 0.65fr);
+		gap: clamp(1.25rem, 3.5vw, 3rem);
+		scroll-margin-top: 2rem;
+		border-bottom: 1px solid var(--ink);
+		padding: clamp(2.3rem, 5vw, 4.25rem) 0;
 	}
 
-	.project-meta {
-		color: var(--muted-2);
-		writing-mode: vertical-rl;
+	.project:nth-child(even) .project-index {
+		transform: rotate(5deg) translateY(0.3rem);
+	}
+
+	.project-index {
+		font-size: 1.25rem;
+	}
+
+	.project-category,
+	.evidence-label {
+		margin-bottom: 0.8rem;
+		color: var(--coral-dark);
 	}
 
 	.project h3 {
-		margin-bottom: 0.8rem;
-		font-size: clamp(2rem, 4vw, 3.5rem);
-		line-height: 0.95;
-		letter-spacing: -0.05em;
+		margin-bottom: 1rem;
+		font-size: clamp(2rem, 4.2vw, 3.65rem);
+		line-height: 0.96;
+		letter-spacing: -0.055em;
 	}
 
-	.description,
-	.highlights {
-		color: var(--muted);
-		line-height: 1.7;
+	.project-description {
+		max-width: 64ch;
+		margin-bottom: 1.35rem;
+		font-size: 1.04rem;
+		line-height: 1.68;
 	}
 
 	.highlights {
-		padding-left: 1.2rem;
+		max-width: 65ch;
+		margin: 0;
+		padding-left: 1.15rem;
+		color: var(--muted-ink);
+		line-height: 1.6;
 	}
 
 	.highlights li + li {
-		margin-top: 0.55rem;
+		margin-top: 0.5rem;
 	}
 
-	.project-side {
-		display: flex;
-		flex-direction: column;
-		gap: 1.3rem;
-		border-left: 1px solid var(--line);
-		padding-left: 1.3rem;
+	.highlights li::marker {
+		color: var(--coral);
 	}
 
-	h4 {
-		margin: 0 0 0.8rem;
-		color: var(--muted-2);
-		font-size: 0.76rem;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
+	.project-evidence {
+		display: grid;
+		align-content: start;
+		gap: 1.8rem;
+		border-left: 1px solid var(--rule);
+		padding-left: clamp(1.25rem, 3vw, 2rem);
 	}
 
-	.tags,
-	.links {
+	.technologies,
+	.project-links {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem;
+		gap: 0.4rem 0.65rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
-	.tags span,
-	.links a,
-	code {
-		border: 1px solid var(--line);
-		border-radius: 999px;
-		background: rgba(101, 255, 159, 0.06);
+	.technologies li {
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 0.2rem;
+		color: var(--muted-ink);
+		font-family: var(--font-serif);
+		font-size: 0.95rem;
 	}
 
-	.tags span,
-	.links a {
-		padding: 0.45rem 0.65rem;
-		font-size: 0.85rem;
-	}
-
-	.tags span {
-		color: var(--muted);
-	}
-
-	.links a {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.35rem;
-		color: var(--text);
-		transition: transform 180ms ease, border-color 180ms ease;
-	}
-
-	.links a:hover {
-		border-color: var(--accent);
-	}
-
-
-	code {
-		padding: 0.1rem 0.35rem;
-		color: var(--accent);
-		font-size: 0.9em;
+	.project-links a {
+		border-bottom: 2px solid var(--ink);
+		font-size: 0.88rem;
+		font-weight: 800;
 	}
 
 	.site-footer {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
-		gap: 1rem;
-		border-top: 1px solid var(--line);
-		padding: 2rem 0 3rem;
-		color: var(--muted-2);
+		gap: 1.5rem;
+		border-top: 2px solid var(--ink);
+		padding: 1.8rem 0 2.5rem;
+		font-size: 0.86rem;
 	}
 
 	.site-footer p {
-		margin: 0;
+		margin-bottom: 0;
 	}
 
-	.site-footer a {
-		color: var(--muted);
-	}
-
-	@media (max-width: 900px) {
-		.site-header,
+	@media (max-width: 860px) {
 		.hero,
-		.section-heading,
-		.project {
-			grid-template-columns: 1fr;
-		}
-
-		.site-header {
-			display: grid;
-		}
-
-		.top-nav {
-			justify-content: flex-start;
+		.approach,
+		.projects-header {
+			grid-template-columns: minmax(0, 1fr);
 		}
 
 		.hero {
-			min-height: auto;
-			padding-top: 2rem;
+			gap: 4rem;
+			padding-top: 4.5rem;
 		}
 
-		.terminal {
-			order: 2;
-			transform: none;
+		.working-note {
+			width: min(100% - 1rem, 30rem);
+			margin-left: auto;
 		}
 
-		.project-index {
+		.approach,
+		.projects-header {
+			gap: 2.5rem;
+		}
+
+		.project {
+			grid-template-columns: 2.5rem minmax(0, 1fr);
+		}
+
+		.project-evidence {
+			grid-column: 2;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			margin-bottom: 4rem;
-		}
-
-		.project-meta {
-			writing-mode: initial;
-		}
-
-		.project-side {
-			border-top: 1px solid var(--line);
+			border-top: 1px solid var(--rule);
 			border-left: 0;
-			padding-top: 1.2rem;
+			padding-top: 1.5rem;
 			padding-left: 0;
 		}
 	}
 
-	@media (max-width: 560px) {
+	@media (max-width: 600px) {
 		.site-header,
 		main,
 		.site-footer {
-			width: min(100% - 1rem, 1120px);
+			width: min(100% - 1.5rem, 1160px);
+		}
+
+		.site-header {
+			align-items: flex-start;
+			gap: 0.75rem;
+		}
+
+		.top-nav {
+			justify-content: flex-end;
+			gap: 0;
+		}
+
+		.top-nav a:first-child {
+			display: none;
 		}
 
 		h1 {
-			font-size: clamp(2.8rem, 18vw, 4.8rem);
+			max-width: 100%;
+			font-size: clamp(3.1rem, 14vw, 4rem);
 		}
 
-		.project-index {
+		.project h3 {
+			overflow-wrap: anywhere;
+		}
+
+		.hero {
+			padding: 3.75rem 0 5rem;
+		}
+
+		.working-note {
+			width: calc(100% - 0.75rem);
+			margin-right: 0.35rem;
+			padding: 1.9rem 1.4rem 1.5rem;
+		}
+
+		.subject-line {
 			grid-template-columns: 1fr;
+			gap: 0.45rem;
+			padding-inline: 0.75rem;
+		}
+
+		.subject-line ul {
+			gap: 0.2rem 0.7rem;
+		}
+
+		.subject-line li:not(:last-child)::after {
+			margin-left: 0.7rem;
+		}
+
+		.approach {
+			padding: 5.5rem 0 6.5rem;
+		}
+
+		.principles li {
+			grid-template-columns: 2.4rem 1fr;
+			gap: 0.75rem;
+		}
+
+		.projects-header h2,
+		.section-intro h2 {
+			font-size: clamp(2.7rem, 13vw, 4rem);
 		}
 
 		.project {
-			border-radius: 20px;
-			padding: 1rem;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+		}
+
+		.project-index {
+			font-size: 1rem;
+		}
+
+		.project-copy,
+		.project-evidence {
+			grid-column: 1;
+		}
+
+		.project-evidence {
+			grid-template-columns: 1fr;
+			gap: 1.4rem;
 		}
 
 		.site-footer {
+			align-items: flex-start;
 			flex-direction: column;
+			gap: 0.5rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
+
+		.hero-links .primary-link:hover {
+			transform: none;
 		}
 	}
 </style>
