@@ -1,0 +1,3 @@
+allowBuilds:
+  # Astro resolves esbuild's platform binary; its install script is unnecessary.
+  esbuild: false
