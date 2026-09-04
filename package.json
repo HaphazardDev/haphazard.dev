@@ -12,8 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^7.1.6"
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.1"
   },
   "packageManager": "pnpm@10.33.2"
 }
