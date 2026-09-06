@@ -19,10 +19,10 @@ export const projects: Project[] = [
 		title: "oil.code",
 		category: "VS Code extension",
 		description:
-			"A VS Code extension inspired by oil.nvim that lets you edit your filesystem like a normal file so common file operations feel fast and keyboard friendly.",
+			"Edit files and directories through a text buffer in VS Code, with oil.nvim-style navigation and familiar editing commands.",
 		highlights: [
-			"Built for developers who want an oil.nvim-style workflow without leaving VS Code.",
-			"Supports create, move, rename, delete, preview, and directory navigation directly from the editor.",
+			"Create, move, rename, delete, and preview entries without leaving the editor.",
+			"Includes default VSCodeVim shortcuts and supports custom vscode-neovim mappings.",
 		],
 		technologies: ["TypeScript", "VS Code API", "Vim workflows"],
 		links: [
@@ -39,12 +39,12 @@ export const projects: Project[] = [
 	{
 		slug: "arashi",
 		title: "Arashi",
-		category: "CLI developer tool",
+		category: "Git worktree CLI",
 		description:
-			"A Git worktree manager for meta-repositories that helps keep related repos aligned while working across a shared feature branch and workspace.",
+			"Coordinate matching Git worktrees across a meta-repository while each repository keeps its own history, CI, and pull requests.",
 		highlights: [
-			"Designed for multi-repo development and spec-driven workflows.",
-			"Includes commands for creating, switching, syncing, and setting up coordinated worktrees.",
+			"Create and switch shared feature workspaces across configured repositories.",
+			"Handle setup, synchronization, status, and cleanup from one CLI.",
 		],
 		technologies: ["TypeScript", "Node.js", "Git", "CLI UX"],
 		links: [
@@ -69,12 +69,12 @@ export const projects: Project[] = [
 	{
 		slug: "coding-agents-tmux",
 		title: "coding-agents-tmux",
-		category: "tmux integration",
+		category: "tmux plugin",
 		description:
-			"A tmux plugin and CLI for tracking, monitoring, and jumping between terminal coding-agent sessions, with support for busy, idle, and waiting states.",
+			"Find, monitor, and jump between terminal coding-agent panes in tmux, especially sessions waiting for your input.",
 		highlights: [
-			"Makes it easier to manage multiple agent sessions from a single tmux workflow.",
-			"Supports pi, opencode, and codex session discovery, switching, popups, and status summaries.",
+			"Show the focused pane state and a summary of background agents in the tmux status line.",
+			"Discover OpenCode, pi, Codex, Claude, and Kiro sessions for switching, popups, and status summaries.",
 		],
 		technologies: ["TypeScript", "tmux", "Terminal tooling", "Agent UX"],
 		links: [
@@ -87,14 +87,14 @@ export const projects: Project[] = [
 	{
 		slug: "pi-extensions",
 		title: "pi-extensions",
-		category: "pi ecosystem",
+		category: "pi extensions",
 		description:
-			"A collection of installable pi extensions that explores small but useful workflow improvements for the pi coding agent experience.",
+			"Install small, focused workflow additions for the pi coding agent directly from npm.",
 		highlights: [
-			"Includes packages for asking user questions, copying code blocks, interactive review, and Vim-style quit commands.",
-			"A place for experimenting with pragmatic extensions that make pi more ergonomic day to day.",
+			"Add structured questions, code-block copying, interactive review, background jobs, and Vim-style quit commands.",
+			"Each extension is independently installable under the @haphazarddev npm scope.",
 		],
-		technologies: ["TypeScript", "pi", "Extensions", "Developer experience"],
+		technologies: ["TypeScript", "pi", "npm", "Developer tools"],
 		links: [
 			{
 				label: "GitHub",
